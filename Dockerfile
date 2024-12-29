@@ -1,5 +1,5 @@
 # Use an official Maven image as the base image
-FROM maven:3.8.4-openjdk-21-slim AS build
+FROM maven:3.8.7-openjdk-18-slim AS build
 # Set the working directory in the container
 WORKDIR /app
 # Copy the pom.xml and the project files to the container
@@ -8,7 +8,7 @@ COPY src ./src
 # Build the application using Maven
 RUN mvn clean package -DskipTests
 # Use an official OpenJDK image as the base image
-FROM openjdk:21-jre-slim
+FROM openjdk:25-jdk-bullseye
 # Set the working directory in the container
 WORKDIR /app
 
@@ -21,6 +21,6 @@ RUN apk update && apk add --no-cache \
 
 EXPOSE 443
 
-COPY target/*.jar /app/boot.jar
+COPY -- from=build /app/target/rohit.jar .
 
-ENTRYPOINT ["java", "-jar", "/app/boot.jar"]
+ENTRYPOINT ["java", "-jar", "rohit.jar"]
