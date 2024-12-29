@@ -1,13 +1,16 @@
-FROM maven:3.9.6-jdk-21-slim AS build
-
-WORKDIR app
-
-COPY src /app/src
-COPY pom.xml /app
-RUN mvn -f /app/pom.xml clean package
-
-
-FROM amazoncorretto:21-alpine3.17-full
+# Use an official Maven image as the base image
+FROM maven:3.8.4-openjdk-21-slim AS build
+# Set the working directory in the container
+WORKDIR /app
+# Copy the pom.xml and the project files to the container
+COPY pom.xml .
+COPY src ./src
+# Build the application using Maven
+RUN mvn clean package -DskipTests
+# Use an official OpenJDK image as the base image
+FROM openjdk:21-jre-slim
+# Set the working directory in the container
+WORKDIR /app
 
 RUN apk update && apk add --no-cache \
     bash \
@@ -18,6 +21,6 @@ RUN apk update && apk add --no-cache \
 
 EXPOSE 443
 
-COPY target/rohit*.jar /app/boot.jar
+COPY target/*.jar /app/boot.jar
 
 ENTRYPOINT ["java", "-jar", "/app/boot.jar"]
