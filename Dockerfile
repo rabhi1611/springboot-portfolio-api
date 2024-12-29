@@ -1,5 +1,5 @@
 # Use an official Maven image as the base image
-FROM maven:3.8.7-openjdk-18-slim AS build
+FROM maven:3.9.4-eclipse-temurin-21-alpine AS build
 # Set the working directory in the container
 WORKDIR /app
 # Copy the pom.xml and the project files to the container
