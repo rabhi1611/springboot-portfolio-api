@@ -21,6 +21,6 @@ RUN apk update && apk add --no-cache \
 
 EXPOSE 443
 
-COPY -- from=build /app/target/rohit.jar .
+COPY -- from=build /app/target/rohit-0.0.1-SNAPSHOT.jar .
 
-ENTRYPOINT ["java", "-jar", "rohit.jar"]
+ENTRYPOINT ["java", "-jar", "rohit-0.0.1-SNAPSHOT.jar"]
