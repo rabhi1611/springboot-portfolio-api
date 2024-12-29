@@ -12,13 +12,6 @@ FROM openjdk:25-jdk-bullseye
 # Set the working directory in the container
 WORKDIR /app
 
-RUN apk update && apk add --no-cache \
-    bash \
-    curl \
-    openssl && \
-    rm -rf /var/cache/apk/*
-
-
 EXPOSE 443
 
 COPY --from=build /app/target/rohit-0.0.1-SNAPSHOT.jar .
