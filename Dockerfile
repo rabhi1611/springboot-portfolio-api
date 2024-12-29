@@ -13,4 +13,4 @@ EXPOSE 443
 
 COPY target/rohit*.jar /app/boot.jar
 
-ENTRYPOINT["java", "-jar", "/app/boot.jar"]
+ENTRYPOINT ["java", "-jar", "/app/boot.jar"]
