@@ -1,6 +1,6 @@
 package com.portfolio.rohit.service;
 
-import com.portfolio.rohit.dto.EngineerDto;
+import com.portfolio.rohit.dto.*;
 import com.portfolio.rohit.entity.Engineer;
 import com.portfolio.rohit.repository.EngineerRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +19,26 @@ public class EngineerServiceImpl implements EngineerService {
     @Override
     public EngineerDto getDetails() {
         Optional<Engineer> engineer = engineerRepository.findById(1);
-        return engineer.map(value -> EngineerDto.builder().name(value.getName()).build()).orElse(null);
+        return engineer.map(person -> EngineerDto.builder()
+                .name(person.getName())
+                .emailId(person.getEmailId())
+                .city(person.getCity())
+                .noticePeriod(person.getNoticePeriod())
+                .achievements(person.getAchievements().stream().map(achievement
+                        -> AchievementDto.builder().detail(achievement.getDetail()).build()).toList())
+                .educations(person.getEducations().stream().map(education
+                        -> EducationDto.builder().course(education.getCourse()).major(education.getMajor())
+                        .startYear(education.getStartYear()).endYear(education.getEndYear()).grade(education.getGrade())
+                        .build()).toList())
+                .experiences(person.getExperiences().stream().map(experience
+                        -> ExperienceDto.builder().role(experience.getRole()).company(experience.getCompany())
+                        .summary(experience.getSummary()).build()).toList())
+                .skills(person.getSkills().stream().map(skill
+                        -> SkillDto.builder().name(skill.getName()).build()).toList())
+                .projects(person.getProjects().stream().map(project
+                        -> ProjectDto.builder().name(project.getName()).detail(project.getDetail()).build()).toList())
+                .profiles(person.getProfiles().stream().map(profile
+                        -> ProfileDto.builder().socialName(profile.getSocialName()).link(profile.getLink()).build()).toList())
+                .build()).orElse(null);
     }
 }
