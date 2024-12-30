@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SkillDto {
-    private String name;
+    private String skill;
 }

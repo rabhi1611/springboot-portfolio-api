@@ -18,7 +18,7 @@ public class Skill implements Serializable {
     private Integer skillId;
 
     @Column(nullable = false)
-    private String name;
+    private String skill;
 
     @ManyToOne
     @JoinColumn(name = "id", nullable = false)

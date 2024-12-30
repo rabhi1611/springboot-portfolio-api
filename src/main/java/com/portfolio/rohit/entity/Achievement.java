@@ -18,7 +18,7 @@ public class Achievement implements Serializable {
     private Integer achievementId;
 
     @Column(nullable = false)
-    private String detail;
+    private String achievement;
 
     @ManyToOne
     @JoinColumn(name = "id", nullable = false)

@@ -26,6 +26,12 @@ public class Experience implements Serializable {
     @Column(nullable = false)
     private String summary;
 
+    @Column(nullable = false)
+    private String startDate;
+
+    @Column(nullable = false)
+    private String endDate;
+
     @ManyToOne
     @JoinColumn(name = "id", nullable = false)
     private Engineer engineer;

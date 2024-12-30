@@ -25,16 +25,17 @@ public class EngineerServiceImpl implements EngineerService {
                 .city(person.getCity())
                 .noticePeriod(person.getNoticePeriod())
                 .achievements(person.getAchievements().stream().map(achievement
-                        -> AchievementDto.builder().detail(achievement.getDetail()).build()).toList())
+                        -> AchievementDto.builder().achievement(achievement.getAchievement()).build()).toList())
                 .educations(person.getEducations().stream().map(education
                         -> EducationDto.builder().course(education.getCourse()).major(education.getMajor())
                         .startYear(education.getStartYear()).endYear(education.getEndYear()).grade(education.getGrade())
-                        .build()).toList())
+                        .university(education.getUniversity()).build()).toList())
                 .experiences(person.getExperiences().stream().map(experience
                         -> ExperienceDto.builder().role(experience.getRole()).company(experience.getCompany())
-                        .summary(experience.getSummary()).build()).toList())
+                        .summary(experience.getSummary()).startDate(experience.getStartDate())
+                        .endDate(experience.getEndDate()).build()).toList())
                 .skills(person.getSkills().stream().map(skill
-                        -> SkillDto.builder().name(skill.getName()).build()).toList())
+                        -> SkillDto.builder().skill(skill.getSkill()).build()).toList())
                 .projects(person.getProjects().stream().map(project
                         -> ProjectDto.builder().name(project.getName()).detail(project.getDetail()).build()).toList())
                 .profiles(person.getProfiles().stream().map(profile

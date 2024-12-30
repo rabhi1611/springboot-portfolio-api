@@ -10,6 +10,7 @@ import lombok.Setter;
 public class EducationDto {
     private String course;
     private String major;
+    private String university;
     private String startYear;
     private String endYear;
     private String grade;

@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class AchievementDto {
-    private String detail;
+    private String achievement;
 }

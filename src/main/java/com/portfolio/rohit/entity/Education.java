@@ -24,6 +24,9 @@ public class Education implements Serializable {
     private String major;
 
     @Column(nullable = false)
+    private String university;
+
+    @Column(nullable = false)
     private String startYear;
 
     @Column(nullable = false)
