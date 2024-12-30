@@ -19,10 +19,6 @@ public class EngineerServiceImpl implements EngineerService {
     @Override
     public EngineerDto getDetails() {
         Optional<Engineer> engineer = engineerRepository.findById(1);
-        return engineer.map(value -> {
-            EngineerDto engineerDto = new EngineerDto();
-            engineerDto.setName(value.getName());
-            return engineerDto;
-        }).orElse(null);
+        return engineer.map(value -> EngineerDto.builder().name(value.getName()).build()).orElse(null);
     }
 }

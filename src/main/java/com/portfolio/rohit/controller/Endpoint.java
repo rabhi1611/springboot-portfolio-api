@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1")
 public class Endpoint {
 
     private final EngineerServiceImpl engineerService;
@@ -19,7 +19,7 @@ public class Endpoint {
         this.engineerService = engineerService;
     }
 
-    @GetMapping(value = "rohit/details", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/", produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<EngineerDto> getDetails() {
         return new ResponseEntity<>(engineerService.getDetails(), HttpStatus.OK);
     }
